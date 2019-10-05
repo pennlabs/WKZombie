@@ -27,11 +27,13 @@ import WebKit
 public typealias AuthenticationHandler = (URLAuthenticationChallenge) -> (URLSession.AuthChallengeDisposition, URLCredential?)
 public typealias SnapshotHandler = (Snapshot) -> Void
 
+public class DataStore {
+    public static var dataStore: WKWebsiteDataStore?
+}
+
 public class WKZombie {
     
-    public static var dataStore: WKWebsiteDataStore?
-    
-    private static var __once: () = {  Static.instance = WKZombie(dataStore: WKZombie.dataStore) }()
+    private static var __once: () = {  Static.instance = WKZombie(dataStore: DataStore.dataStore) }()
     
     /// A shared instance of `Manager`, used by top-level WKZombie methods,
     /// and suitable for multiple web sessions.
