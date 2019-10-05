@@ -207,7 +207,7 @@ extension Renderer {
         let distantPast = Date.distantPast
         HTTPCookieStorage.shared.removeCookies(since: distantPast)
         let websiteDataTypes = Set([WKWebsiteDataTypeDiskCache, WKWebsiteDataTypeMemoryCache])
-        WKWebsiteDataStore.default().removeData(ofTypes: websiteDataTypes, modifiedSince: distantPast, completionHandler:{ })
+        webView.configuration.websiteDataStore.removeData(ofTypes: websiteDataTypes, modifiedSince: distantPast, completionHandler:{ })
     }
 }
 
