@@ -40,7 +40,7 @@ public class WKZombie {
     
     public struct Static {
         static var token : Int = 0
-        static var instance : WKZombie?
+        public static var instance : WKZombie?
     }
     
     fileprivate var _renderer : Renderer!
