@@ -29,7 +29,9 @@ public typealias SnapshotHandler = (Snapshot) -> Void
 
 public class WKZombie {
     
-    private static var __once: () = {  Static.instance = WKZombie() }()
+    public static var dataStore: WKWebsiteDataStore?
+    
+    private static var __once: () = {  Static.instance = WKZombie(dataStore: WKZombie.dataStore) }()
     
     /// A shared instance of `Manager`, used by top-level WKZombie methods,
     /// and suitable for multiple web sessions.
@@ -38,9 +40,9 @@ public class WKZombie {
         return Static.instance!
     }
     
-    public struct Static {
+    internal struct Static {
         static var token : Int = 0
-        public static var instance : WKZombie?
+        static var instance : WKZombie?
     }
     
     fileprivate var _renderer : Renderer!
