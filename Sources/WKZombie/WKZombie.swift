@@ -38,7 +38,7 @@ public class WKZombie {
         return Static.instance!
     }
     
-    internal struct Static {
+    public struct Static {
         static var token : Int = 0
         static var instance : WKZombie?
     }
