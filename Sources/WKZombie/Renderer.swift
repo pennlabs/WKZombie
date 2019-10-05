@@ -59,7 +59,7 @@ internal class Renderer {
     fileprivate var webView : WKWebView!
     
     
-    init(processPool: WKProcessPool? = nil) {
+    init(processPool: WKProcessPool? = nil, dataStore: WKWebsiteDataStore? = nil) {
         let doneLoadingWithoutMediaContentScript = "window.webkit.messageHandlers.doneLoading.postMessage(\(Renderer.scrapingCommand));"
         let doneLoadingUserScript = WKUserScript(source: doneLoadingWithoutMediaContentScript, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
         
@@ -75,6 +75,7 @@ internal class Renderer {
         let config = WKWebViewConfiguration()
         config.processPool = processPool ?? WKProcessPool()
         config.userContentController = contentController
+        config.websiteDataStore = dataStore ?? WKWebsiteDataStore.default()
         
         /// Note: The WKWebView behaves very unreliable when rendering offscreen
         /// on a device. This is especially true with JavaScript, which simply 
@@ -206,7 +207,7 @@ extension Renderer {
         let distantPast = Date.distantPast
         HTTPCookieStorage.shared.removeCookies(since: distantPast)
         let websiteDataTypes = Set([WKWebsiteDataTypeDiskCache, WKWebsiteDataTypeMemoryCache])
-        WKWebsiteDataStore.default().removeData(ofTypes: websiteDataTypes, modifiedSince: distantPast, completionHandler:{ })
+        webView.configuration.websiteDataStore.removeData(ofTypes: websiteDataTypes, modifiedSince: distantPast, completionHandler:{ })
     }
 }
 
