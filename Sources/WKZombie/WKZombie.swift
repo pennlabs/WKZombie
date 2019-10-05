@@ -27,13 +27,9 @@ import WebKit
 public typealias AuthenticationHandler = (URLAuthenticationChallenge) -> (URLSession.AuthChallengeDisposition, URLCredential?)
 public typealias SnapshotHandler = (Snapshot) -> Void
 
-public class DataStore {
-    public static var dataStore: WKWebsiteDataStore?
-}
-
 public class WKZombie {
     
-    private static var __once: () = {  Static.instance = WKZombie(dataStore: DataStore.dataStore) }()
+    private static var __once: () = {  Static.instance = WKZombie() }()
     
     /// A shared instance of `Manager`, used by top-level WKZombie methods,
     /// and suitable for multiple web sessions.
@@ -42,9 +38,9 @@ public class WKZombie {
         return Static.instance!
     }
     
-    internal struct Static {
+    public struct Static {
         static var token : Int = 0
-        static var instance : WKZombie?
+        public static var instance : WKZombie?
     }
     
     fileprivate var _renderer : Renderer!
