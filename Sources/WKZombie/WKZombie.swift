@@ -114,7 +114,7 @@ public class WKZombie {
      */
     public init(name: String? = "WKZombie", processPool: WKProcessPool? = nil, dataStore: WKWebsiteDataStore? = nil) {
         self.name = name
-        self._renderer = Renderer(processPool: processPool)
+        self._renderer = Renderer(processPool: processPool, dataStore: dataStore)
         self._fetcher = ContentFetcher()
     }
     
