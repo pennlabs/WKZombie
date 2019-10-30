@@ -38,9 +38,15 @@ public class WKZombie {
         return Static.instance!
     }
     
-    public struct Static {
+    internal struct Static {
         static var token : Int = 0
         public static var instance : WKZombie?
+    }
+    
+    /// Sets the global `WKZombie` instance, overriding the existing one
+    public func setInstance(zombie: WKZombie) {
+        _ = WKZombie.sharedInstance
+        WKZombie.Static.instance = zombie
     }
     
     fileprivate var _renderer : Renderer!
@@ -149,6 +155,17 @@ public class WKZombie {
                 }
             }
         }
+    }
+}
+
+
+//========================================
+// MARK: Get WKWebsiteDataStore
+//========================================
+
+public extension WKZombie {
+    func getDataStore() -> WKWebsiteDataStore {
+        return self._renderer.getDataStore()
     }
 }
 

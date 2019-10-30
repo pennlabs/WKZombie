@@ -211,6 +211,16 @@ extension Renderer {
     }
 }
 
+//========================================
+// MARK: WKWebsiteDataStore
+//========================================
+
+extension Renderer {
+    internal func getDataStore() -> WKWebsiteDataStore {
+        return webView.configuration.websiteDataStore
+    }
+}
+
 
 //========================================
 // MARK: Snapshot
