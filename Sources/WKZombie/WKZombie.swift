@@ -44,7 +44,7 @@ public class WKZombie {
     }
     
     /// Sets the global `WKZombie` instance, overriding the existing one
-    public func setInstance(zombie: WKZombie) {
+    public static func setInstance(zombie: WKZombie) {
         _ = WKZombie.sharedInstance
         WKZombie.Static.instance = zombie
     }
